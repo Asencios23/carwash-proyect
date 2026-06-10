@@ -1,0 +1,13 @@
+#habilita los directorios y desactiva el listado de archivo
+
+Options All -Indexes
+
+#desactiva la opcion de encontrar paginas similares
+Options -MultiViews
+
+#activa el motor de reescritura URL
+RewriteEngine On 
+RewriteCond %{REQUEST_FILENAME} !-f
+
+#redirege todas las peticiones que no corresponden a archivos 
+RewriteRule ^ index.php [QSA,L]
