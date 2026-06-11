@@ -11,9 +11,9 @@
         <!-- extraido tambien de https://www.w3schools.com/bootstrap4/bootstrap_forms.asp -->
         <form method="post" class="needs-validation" novalidate>
           <div class="input-group mb-3">
-            <!-- login_usuario -->
+            <!-- usuario -->
             <input type="text" class="form-control"
-              placeholder="usuario" name="login_usuario" id="login_usuario" required>
+              placeholder="usuario" name="usuario" id="usuario" required>
 
             <div class="input-group-append">
               <div class="input-group-text">
@@ -27,9 +27,9 @@
           </div>
 
           <div class="input-group mb-3">
-            <!-- login_password -->
+            <!-- password_hash -->
             <input type="password" class="form-control"
-              placeholder="Contraseña" name="login_password" id="login_password" required>
+              placeholder="Contraseña" name="password_hash" id="password_hash" required>
 
             <div class="input-group-append">
               <div class="input-group-text">

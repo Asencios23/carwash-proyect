@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 100vh;
 
-    background-image: url("../../img/matrix.jpg");
+  background-image: url("../../img/ferrari3.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -10,4 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.login-box{
+  opacity: 0.6;
 }

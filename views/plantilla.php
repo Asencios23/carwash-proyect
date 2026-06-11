@@ -25,9 +25,13 @@ $routesArray = array_filter($routesArray);
 <body class="hold-transition sidebar-mini">
 
 <?php
-/*include "views/pages/login/login.php";
-          echo '</body></html>';
-          return;*/
+
+if(!isset($_SESSION["login"]) || $_SESSION["login"] != "ok")
+{
+    include "views/pages/login/login.php";
+    exit;
+}
+
 ?>
 
 <!-- Site wrapper -->
@@ -35,38 +39,38 @@ $routesArray = array_filter($routesArray);
 
 
   <?php
-      include ("views/modulos/navbar.php");
-      include ("views/modulos/menu.php");
-
-  ?>
+include("views/modulos/navbar.php");
+include("views/modulos/menu.php");
+?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <?php
-    //cuando no esta vacio
-   if(!empty($routesArray[2]))
-          {
-            if(
-              $routesArray[2] == "inicio" ||
-              $routesArray[2] == "clientes" ||
-              $routesArray[2] == "vehiculos" ||
-              $routesArray[2] == "ordenes" ||
-              $routesArray[2] == "control-de-ordenes" 
-              )
 
-              {
-            
-               include "views/pages/". $routesArray[2] . "/" . $routesArray[2]. ".php";
-            }else{
-                include "views/pages/404/404.php";
-                 
-            }
-          }else{
-            include "views/pages/inicio/inicio.php";
-            
-          }
+if(!empty($routesArray[2]))
+{
+    if(
+        $routesArray[2] == "inicio" ||
+        $routesArray[2] == "clientes" ||
+        $routesArray[2] == "vehiculos" ||
+        $routesArray[2] == "ordenes" ||
+        $routesArray[2] == "control-de-ordenes"||
+        $routesArray[2] == "salir"
+    )
+    {
+        include "views/pages/".$routesArray[2]."/".$routesArray[2].".php";
+    }
+    else
+    {
+        include "views/pages/404/404.php";
+    }
+}
+else
+{
+    include "views/pages/inicio/inicio.php";
+}
 
-      ?>  
+?>
    </div>
      
     
@@ -76,8 +80,8 @@ $routesArray = array_filter($routesArray);
 
 <!-- /.ANCLAR PAGINAS -->
  <?php
- include ("views/modulos/footer.php");
- ?>
+include("views/modulos/footer.php");
+?>
 
 
   <!-- Control Sidebar -->
