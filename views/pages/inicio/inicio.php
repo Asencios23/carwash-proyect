@@ -50,7 +50,7 @@
                   
                   <!-- Imagen 2: Lavado Completo -->
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="views/assets/img/carro3.jpg" alt="Lavado + Encerado" style="max-height: 400px; object-fit: cover; background-color: #2a5298;">
+                    <img class="d-block w-100" src="views/assets/img/carro2.jpg" alt="Lavado + Encerado" style="max-height: 400px; object-fit: cover; background-color: #2a5298;">
                     <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.6); border-radius: 10px; padding: 15px;">
                       <h3 class="text-bold text-success">💎 Lavado Completo</h3>
                       <p>¡Lavado más Encerado Orbital! Máxima protección contra el polvo y brillo espejo.</p>
@@ -59,7 +59,7 @@
                   
                   <!-- Imagen 3: Lavado + Encerado -->
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="views/assets/img/carro4.jpg" alt="Promoción Especial" style="max-height: 400px; object-fit: cover; background-color: #111;">
+                    <img class="d-block w-100" src="views/assets/img/carro3.jpg" alt="Promoción Especial" style="max-height: 400px; object-fit: cover; background-color: #111;">
                     <div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.6); border-radius: 10px; padding: 15px;">
                       <h3 class="text-bold text-danger">🔥 Lavado + Encerado</h3>
                       <p>10% de descuento en tu segundo vehículo registrado en el sistema.</p>

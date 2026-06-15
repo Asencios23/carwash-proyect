@@ -140,26 +140,29 @@
                     <div class="col-md-4">
 
                         <div class="form-group">
-
+                            
+                        <!-- GET_servicios -->
                             <label>Servicio</label>
 
-                            <select class="form-control">
+                           
+                            <?php
+                            $servicios = ServiciosController::mostrarServicios();
+                            ?>
 
-                                <option selected disabled>
-                                    Seleccione Servicio
+                            <select class="form-control" id="servicio" placeholder="Seleccione Servicio">
+
+                                <option selected disabled value="">
+                                    <?php foreach($servicios as $servicio): ?>
+                                        Seleccione Servicio
+                                        
                                 </option>
 
-                                <option>
-                                    Lavado Básico
+                                <option value="<?php echo $servicio["id_servicio"]; ?>"
+                                  data-precio="<?php echo $servicio["precio"]; ?>">
+                                               <?php echo $servicio["descripcion"]; ?>
                                 </option>
 
-                                <option>
-                                    Lavado Completo
-                                </option>
-
-                                <option>
-                                    Encerado
-                                </option>
+                                <?php endforeach; ?>
 
                             </select>
 
@@ -175,9 +178,11 @@
 
                             <input
                                 type="number"
+                                id="subtotal"
                                 class="form-control"
                                 placeholder="0.00"
                                 readonly>
+                               
 
                         </div>
 
@@ -247,3 +252,15 @@
     </div>
 
 </section>
+ 
+<script>
+//GET_servicios, esto hace que a la hora de seleccionar un servicio, se muestre su precio en el campo subtotal
+   
+document.getElementById('servicio').addEventListener ('change', function() {
+
+        let precio = this.options[this.selectedIndex].dataset.precio;
+
+        document.getElementById('subtotal').value = precio;
+    });
+</script>
+    

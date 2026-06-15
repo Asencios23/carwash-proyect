@@ -65,7 +65,7 @@
 
         </div>
 
-        <form>
+        <form method="post">
 
             <div class="card-body">
 
@@ -81,7 +81,9 @@
                                 type="text"
                                 class="form-control"
                                 maxlength="8"
-                                placeholder="Ingrese DNI">
+                                name = "dni"
+                                placeholder="Ingrese DNI"
+                                required>
 
                         </div>
 
@@ -97,7 +99,9 @@
                                 type="text"
                                 class="form-control"
                                 maxlength="9"
-                                placeholder="Ingrese teléfono">
+                                name = "telefono"
+                                placeholder="Ingrese teléfono"
+                                required>
 
                         </div>
 
@@ -112,7 +116,9 @@
                             <input
                                 type="email"
                                 class="form-control"
-                                placeholder="correo@gmail.com">
+                                name = "email"
+                                placeholder="correo@gmail.com"
+                                required>
 
                         </div>
 
@@ -131,7 +137,9 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Ingrese nombres">
+                                name = "nombres"
+                                placeholder="Ingrese nombres"
+                                required>
 
                         </div>
 
@@ -146,7 +154,9 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                placeholder="Ingrese apellidos">
+                                name = "apellidos"
+                                placeholder="Ingrese apellidos"
+                                required>
 
                         </div>
 
@@ -157,6 +167,10 @@
             </div>
 
             <div class="card-footer text-right">
+                <?php
+                ClientesController::crearClientes();
+                ?>
+
 
                 <button
                     type="submit"
