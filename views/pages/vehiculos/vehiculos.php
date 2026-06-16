@@ -51,8 +51,10 @@
             </h3>
 
         </div>
+        
+        <!-- POST_clientes -->
 
-        <form>
+        <form method="post">
 
             <div class="card-body">
 
@@ -65,9 +67,15 @@
                             <label>ID Vehículo</label>
 
                             <input
+                                name="id_vehiculo"
                                 type="text"
                                 class="form-control"
-                                placeholder="VH001">
+                                placeholder="VH001"
+                                maxlength="6"
+                                pattern="[A-Z0-9]{6}"
+                                style="text-transform: uppercase;"
+                                oninput="this.value = this.value.toUpperCase()" 
+                                required>
 
                         </div>
 
@@ -80,9 +88,15 @@
                             <label>Placa</label>
 
                             <input
+                                name="placa"
                                 type="text"
                                 class="form-control"
-                                placeholder="ABC123">
+                                placeholder="ABC123"
+                                maxlength="6"
+                                pattern="[A-Z0-9]{6}"
+                                style="text-transform: uppercase;"
+                                oninput="this.value = this.value.toUpperCase()"
+                                required>
 
                         </div>
 
@@ -95,9 +109,11 @@
                             <label>Color</label>
 
                             <input
+                                name="color"
                                 type="text"
                                 class="form-control"
-                                placeholder="Negro">
+                                placeholder="Negro"
+                                required>
 
                         </div>
 
@@ -114,9 +130,11 @@
                             <label>Marca</label>
 
                             <input
+                                name="marca"
                                 type="text"
                                 class="form-control"
-                                placeholder="Toyota">
+                                placeholder="Toyota"
+                                required>
 
                         </div>
 
@@ -129,9 +147,11 @@
                             <label>Modelo</label>
 
                             <input
+                                name="modelo"
                                 type="text"
                                 class="form-control"
-                                placeholder="Corolla">
+                                placeholder="Corolla"
+                                required>
 
                         </div>
 
@@ -147,25 +167,38 @@
 
                             <label>Cliente Propietario</label>
 
-                            <select class="form-control">
 
-                                <option selected disabled>
-                                    Seleccione cliente
-                                </option>
+                            
+                           <!-- GET_Clientes extraer Clientes -->
+                        <?php
 
-                                <option>
-                                    12345678 - Carlos Ramirez Soto
-                                </option>
+                            $clientes = ClientesController::mostrarClientes();
 
-                                <option>
-                                    23456789 - Ana Lopez Huaman
-                                </option>
+                        ?>
 
-                                <option>
-                                    56789012 - Jorge Paredes Silva
-                                </option>
+                        <input
+                        type="text"
+                        class="form-control"
+                        name="dni_cliente"
+                        list="listaClientes"
+                        placeholder="Ingrese DNI del cliente"
+                        required>
 
-                            </select>
+                        <datalist id="listaClientes">
+
+                            <?php foreach($clientes as $cliente): ?>
+
+                            <option
+                            value="<?php echo $cliente["dni"]; ?>">
+                            
+                            <?php echo $cliente["nombres"]; ?>
+                            <?php echo $cliente["apellidos"]; ?>
+
+                            </option>
+
+                            <?php endforeach; ?>
+
+                        </datalist>
 
                         </div>
 
@@ -175,7 +208,14 @@
 
             </div>
 
+             
             <div class="card-footer text-right">
+               
+                <?php
+
+                VehiculosController::crearVehiculos();
+
+                ?>
 
                 <button
                     type="submit"

@@ -52,7 +52,7 @@
 
         </div>
 
-        <form>
+        <form method="post">
 
             <div class="card-body">
 
@@ -94,17 +94,41 @@
 
                             <label>Cliente</label>
 
-                            <select class="form-control">
+                              <!-- GET_Clientes extraer Clientes -->
+                        <?php
 
-                                <option selected disabled>
-                                    Seleccione Cliente
-                                </option>
+                            $clientes = ClientesController::mostrarClientes();
 
-                                <option>
-                                    12345678 - Carlos Ramirez Soto
-                                </option>
+                        ?>
 
-                            </select>
+                        <input
+                        type="text"
+                        class="form-control"
+                        name="dni_cliente"
+                         value="<?php echo isset($_POST['dni_cliente']) ? $_POST['dni_cliente'] : ''; ?>"
+                        list="listaClientes"
+                        placeholder="Ingrese DNI del cliente"
+                        required>
+
+                        <datalist id="listaClientes">
+
+                            <?php foreach($clientes as $cliente): ?>
+
+                            <option
+                            value="<?php echo $cliente["dni"]; ?>">
+                            
+                            <?php echo $cliente["nombres"]; ?>
+                            <?php echo $cliente["apellidos"]; ?>
+
+                            </option>
+
+                            <?php endforeach; ?>
+
+                        </datalist>
+
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">
+                            Buscar Vehículos
+                        </button>
 
                         </div>
 
@@ -112,24 +136,42 @@
 
                 </div>
 
-                <!-- Segunda fila -->
+                 
                 <div class="row">
 
                     <div class="col-md-4">
 
                         <div class="form-group">
 
+                        <!--  GET_jalamos datos directo de la casilla clientes -->
+
                             <label>Vehículo</label>
 
-                            <select class="form-control">
+                             <?php
+                                    if(isset($_POST["dni_cliente"]))
+                                {
+                                    $vehiculos = VehiculosController::mostrarVehiculosPorCliente(
+                                    $_POST["dni_cliente"]
+                                    );
+                                }
+                             ?>
+
+                            <select class="form-control" name="id_vehiculo">
 
                                 <option selected disabled>
                                     Seleccione Vehículo
                                 </option>
 
-                                <option>
-                                    BCD234 - Hyundai Accent
+                                 <?php foreach($vehiculos as $vehiculo): ?>
+
+                                <option value="<?php echo $vehiculo["id_vehiculo"]; ?>">
+
+                                     <?php echo $vehiculo["placa"]; ?> -
+                                     <?php echo $vehiculo["marca"]; ?>
+                                     <?php echo $vehiculo["modelo"]; ?>
                                 </option>
+
+                                  <?php endforeach; ?>
 
                             </select>
 

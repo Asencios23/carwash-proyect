@@ -49,7 +49,22 @@
                                 }
 
                 }
-         }
+         
     
 
+
+            //GET_clientes
+
+            static public function mostrarClientes()
+            {
+                 $stmt = Conexion::conectar()->prepare(
+                 "SELECT * FROM clientes"
+                    );
+
+                $stmt->execute();
+
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+    }
 ?>

@@ -11,9 +11,13 @@ require_once "models/adminmodel.php";
 require_once "controller/servicioscontroller.php";
 require_once "models/serviciosmodel.php";
 
-//POST_crear clientes 
+//POST_crearclientes y GET 
 require_once "controller/clientescontroller.php";
 require_once "models/clientesmodel.php";
+
+//POST_crearvehiculos y GET
+require_once "controller/vehiculoscontroller.php";
+require_once "models/vehiculosmodel.php";
 
 $plantilla = new PlantillaController();
 $plantilla->Index();

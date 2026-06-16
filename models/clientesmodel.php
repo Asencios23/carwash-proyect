@@ -43,6 +43,16 @@ require_once "config/conexion.php";
             $stmt = null;
 
         }
+    
+        //GET_clientes
+        static public function mostrarClientes()
+        {
+               $response = ClientesModel::mostrarClientes();
+
+                 return $response;
+        }
+
+
     }
 
 ?>

@@ -64,7 +64,8 @@
             </div>
 
         </div>
-
+  
+        <!-- POST_clientes -->
         <form method="post">
 
             <div class="card-body">
@@ -83,6 +84,8 @@
                                 maxlength="8"
                                 name = "dni"
                                 placeholder="Ingrese DNI"
+                                maxlength="8"
+                                pattern="[0-9]{8}"
                                 required>
 
                         </div>
@@ -99,6 +102,7 @@
                                 type="text"
                                 class="form-control"
                                 maxlength="9"
+                                pattern="[0-9]{9}"
                                 name = "telefono"
                                 placeholder="Ingrese teléfono"
                                 required>
