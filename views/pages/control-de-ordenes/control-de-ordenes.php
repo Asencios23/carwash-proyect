@@ -23,6 +23,12 @@
 <!-- Main content -->
 <section class="content">
 
+<?php
+
+$ordenes = OrdenesController::mostrarControlOrdenes();
+
+?>
+
     <div class="card">
 
         <div class="card-header">
@@ -57,102 +63,56 @@
                 </thead>
 
                 <tbody>
+                    <?php foreach($ordenes as $orden): ?>
 
                     <tr>
 
-                        <td>
-                            <span class="badge badge-warning">
-                                PENDIENTE
-                            </span>
-                        </td>
+                    <td>
 
-                        <td>Carlos Ramirez</td>
+                        <?php if($orden["estado"] == "LIMPIO"): ?>
 
-                        <td>Hyundai Accent</td>
-
-                        <td>BCD234</td>
-
-                        <td>Lavado Completo</td>
-
-                        <td>09:00</td>
-
-                        <td>09:40</td>
-
-                        <td>
-
-                            <button class="btn btn-primary btn-sm">
-
-                                <i class="fab fa-whatsapp"></i>
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>
-                            <span class="badge badge-info">
-                                EN PROCESO
-                            </span>
-                        </td>
-
-                        <td>Ana Lopez</td>
-
-                        <td>Kia Rio</td>
-
-                        <td>XYZ123</td>
-
-                        <td>Encerado</td>
-
-                        <td>10:00</td>
-
-                        <td>10:45</td>
-
-                        <td>
-
-                            <button class="btn btn-primary btn-sm">
-
-                                <i class="fab fa-whatsapp"></i>
-
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>
                             <span class="badge badge-success">
-                                FINALIZADO
+
+                                LIMPIO
+
                             </span>
-                        </td>
 
-                        <td>Jorge Paredes</td>
+                        <?php else: ?>
 
-                        <td>Chevrolet Sail</td>
+                            <span class="badge badge-warning">
 
-                        <td>FGH567</td>
+                                EN PROCESO
 
-                        <td>Lavado + Encerado</td>
+                            </span>
 
-                        <td>08:00</td>
+                        <?php endif; ?>
 
-                        <td>08:50</td>
+                    </td>
 
-                        <td>
+                    <td><?php echo $orden["cliente"]; ?></td>
 
-                            <button class="btn btn-success btn-sm">
+                    <td><?php echo $orden["marca"]; ?></td>
+
+                    <td><?php echo $orden["placa"]; ?></td>
+
+                    <td><?php echo $orden["servicio"]; ?></td>
+
+                    <td><?php echo $orden["hora_entrada"]; ?></td>
+
+                    <td><?php echo $orden["hora_salida"]; ?></td>
+
+                    <td>
+                            <button class="btn btn-primary btn-sm">
+                                
 
                                 <i class="fab fa-whatsapp"></i>
 
                             </button>
+                    </td>
 
-                        </td>
+                </tr>
 
-                    </tr>
+                <?php endforeach; ?>
 
                 </tbody>
 

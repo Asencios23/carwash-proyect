@@ -67,8 +67,14 @@
 
                             <input
                                 type="text"
+                                name="id_orden"
                                 class="form-control"
-                                placeholder="OR001">
+                                pattern="OR[0-9]{3}"
+                                style="text-transform: uppercase;"
+                                oninput="this.value = this.value.toUpperCase()"
+                                placeholder="OR001"
+                                value="<?php echo strtoupper($_POST['id_orden'] ?? ''); ?>"
+                                required>
 
                         </div>
 
@@ -80,9 +86,25 @@
 
                             <label>Fecha</label>
 
+                            <!--poner fecha actual y hora actual-->
+
+                            <?php
+
+                                date_default_timezone_set("America/Lima");
+
+                                $fechaActual = date("Y-m-d");
+
+                                $horaActual = date("H:i");
+
+                            ?>
+
                             <input
                                 type="date"
-                                class="form-control">
+                                name="fecha"
+                                class="form-control"
+                                value="<?php echo $fechaActual; ?>"
+                                readonly
+                                required>
 
                         </div>
 
@@ -191,7 +213,7 @@
                             $servicios = ServiciosController::mostrarServicios();
                             ?>
 
-                            <select class="form-control" id="servicio" placeholder="Seleccione Servicio">
+                            <select class="form-control" id="servicio" name="id_servicio" placeholder="Seleccione Servicio">
 
                                 <option selected disabled value="">
                                     <?php foreach($servicios as $servicio): ?>
@@ -221,6 +243,7 @@
                             <input
                                 type="number"
                                 id="subtotal"
+                                name="subtotal"
                                 class="form-control"
                                 placeholder="0.00"
                                 readonly>
@@ -243,7 +266,10 @@
 
                             <input
                                 type="time"
-                                class="form-control">
+                                class="form-control"
+                                name="hora_entrada"
+                                value="<?php echo $horaActual; ?>"
+                                readonly>
 
                         </div>
 
@@ -256,8 +282,10 @@
                             <label>Hora Salida</label>
 
                             <input
+                                name="hora_salida"
                                 type="time"
-                                class="form-control">
+                                class="form-control"
+                                value="<?php echo $_POST['hora_salida'] ?? ''; ?>">
 
                         </div>
 
@@ -268,6 +296,11 @@
             </div>
 
             <div class="card-footer text-right">
+                 <?php
+
+                OrdenesController::crearOrden();
+
+                ?>
 
                 <button
                     type="submit"

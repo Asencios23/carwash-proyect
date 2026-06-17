@@ -19,6 +19,10 @@ require_once "models/clientesmodel.php";
 require_once "controller/vehiculoscontroller.php";
 require_once "models/vehiculosmodel.php";
 
+//POST_crearordenes
+require_once "controller/ordenescontroller.php";
+require_once "models/ordenesmodel.php";
+
 $plantilla = new PlantillaController();
 $plantilla->Index();
 
