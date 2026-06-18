@@ -133,6 +133,8 @@
                                 name="marca"
                                 type="text"
                                 class="form-control"
+                                style="text-transform: uppercase;"
+                                oninput="this.value = this.value.toUpperCase()" 
                                 placeholder="Toyota"
                                 required>
 
@@ -150,6 +152,8 @@
                                 name="modelo"
                                 type="text"
                                 class="form-control"
+                                style="text-transform: uppercase;"
+                                oninput="this.value = this.value.toUpperCase()" 
                                 placeholder="Corolla"
                                 required>
 

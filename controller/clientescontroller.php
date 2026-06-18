@@ -6,18 +6,20 @@
     {
          static public function crearClientes()
          {
+             if(isset($_POST["dni"]))
+            {
                if(
             empty($_POST["dni"]) ||
             empty($_POST["nombres"]) ||
             empty($_POST["apellidos"]) ||
             empty($_POST["telefono"]) ||
             empty($_POST["email"])
-        )
-        {
+             )
+            {
 
 
             return;
-        }
+           }
                         $datos = array
                         (
                           "dni" => $_POST["dni"],
@@ -32,26 +34,32 @@
                         $response = ClientesModel::crearClientes($datos);
 
                         if($response == "ok")
-                        {
-                                  echo '
-                                  <div class="alert alert-success">
-
-                                  Cliente registrado correctamente
-
-                                  </div>';
-                        } else {
-                                 echo '
-                                <div class="alert alert-danger">
-
-                                Error al registrar cliente
-
+                             {
+                                echo '
+                                    <script>
+                                    window.location="vehiculos";
+                                    </script>';
+                            }
+                            elseif($response == "duplicado")
+                            {
+                                echo '
+                                <div class="alert alert-warning">
+                                El DNI del Cliente ya existe
                                 </div>';
-                                }
+                            }
+                            else
+                            {
+                                echo '
+                                <div class="alert alert-danger">
+                                Error al registrar Cliente
+                                </div>';
+                            }
 
-                }
+            }
+
+        }
          
     
-
 
             //GET_clientes
 
@@ -64,6 +72,13 @@
                 $stmt->execute();
 
                 return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            //es buscador de clientes
+
+            static public function buscarClientePorDni($dni)
+            {
+                return ClientesModel::buscarClientePorDni($dni);
             }
 
     }

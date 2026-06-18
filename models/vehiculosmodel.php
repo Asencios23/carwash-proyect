@@ -34,16 +34,28 @@ class VehiculosModel
         $stmt->bindParam(":color",$datos["color"],PDO::PARAM_STR);
         $stmt->bindParam(":estado",$datos["estado"],PDO::PARAM_INT);
 
-        if($stmt->execute())
-        {
+                    try {
 
-            return "ok";
+                        if($stmt->execute())
+                        {
 
-        }else{   
+                        return "ok";
 
-    return "error";
+                        }
 
-        }
+                    } catch(PDOException $e) 
+                    {
+
+                        if($e->getCode() == 23000)
+                        {
+
+                            return "duplicado";
+
+                        }
+
+                         return "error";
+
+                    }
 
         $stmt = null;
     }

@@ -69,6 +69,15 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="lista-de-clientes" class="nav-link">
+              <i class="fas fa-users mr-2"></i>
+              <p>
+                LISTA DE CLIENTES
+              </p>
+            </a>
+          </li>
+
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">

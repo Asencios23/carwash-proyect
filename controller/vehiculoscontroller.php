@@ -27,8 +27,8 @@
                  $datos = array(
                     "id_vehiculo" => strtoupper($_POST["id_vehiculo"]), //convertir todo a mayuscula
                     "placa" => strtoupper($_POST["placa"]), //convertir todo a mayuscula
-                    "marca" => $_POST["marca"],
-                    "modelo" => $_POST["modelo"],
+                    "marca" => strtoupper($_POST["marca"]), //convertir todo a mayuscula
+                    "modelo" => strtoupper($_POST["modelo"]), //convertir todo a mayuscula
                     "color" => $_POST["color"],
                     "dni_cliente" => $_POST["dni_cliente"],
                     "estado" => 1
@@ -39,27 +39,26 @@
 
                    // Respuesta
                     if($response == "ok")
-                      {
-
-                      echo '
-                     <div class="alert alert-success">
-
-                        Vehículo registrado correctamente
-
-                     </div>';
-
-                     }
-                     else
-                     {
-
-                      echo '
-                      <div class="alert alert-danger">
-
-                       Error al registrar vehículo
-
-                    </div>';
-
-                     }
+                            {
+                                echo '
+                                    <script>
+                                    window.location="ordenes";
+                                    </script>';
+                            }
+                            elseif($response == "duplicado")
+                            {
+                                echo '
+                                <div class="alert alert-warning">
+                                El DNI del Vehiculo ya existe
+                                </div>';
+                            }
+                            else
+                            {
+                                echo '
+                                <div class="alert alert-danger">
+                                Error al registrar Vehiculo
+                                </div>';
+                            }
             }
         }
 

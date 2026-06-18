@@ -55,6 +55,7 @@ if(!empty($routesArray[2]))
         $routesArray[2] == "vehiculos" ||
         $routesArray[2] == "ordenes" ||
         $routesArray[2] == "control-de-ordenes"||
+        $routesArray[2] == "lista-de-clientes"||
         $routesArray[2] == "salir"
     )
     {

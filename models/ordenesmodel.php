@@ -38,12 +38,30 @@ class OrdenesModel
         $stmt->bindParam(":subtotal",$datos["subtotal"]);
 
 
-        if($stmt->execute())
-        {
-            return "ok";
-        }
+                    try {
 
-        return "error";
+                        if($stmt->execute())
+                        {
+
+                        return "ok";
+
+                        }
+
+                    } catch(PDOException $e) 
+                    {
+
+                        if($e->getCode() == 23000)
+                        {
+
+                            return "duplicado";
+
+                        }
+
+                         return "error";
+
+                    }
+
+            $stmt = null;
     }
 
 
@@ -61,6 +79,7 @@ static public function mostrarControlOrdenes()
 
         v.placa,
         v.marca,
+        v.modelo,
 
         CONCAT(c.nombres,' ',c.apellidos) AS cliente,
         c.dni,
@@ -89,8 +108,13 @@ static public function mostrarControlOrdenes()
 
     INNER JOIN servicios s
         ON o.id_servicio = s.id_servicio
+    
+    WHERE o.fecha = CURDATE()
 
     ORDER BY o.fecha DESC"
+
+    
+    
     );
 
     $stmt->execute();

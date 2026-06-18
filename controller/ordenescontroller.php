@@ -38,12 +38,26 @@ class OrdenesController
             $response = OrdenesModel::crearOrden($datos);
 
             if($response == "ok")
-            {
-                echo '
-                <div class="alert alert-success">
-                    Orden registrada correctamente
-                </div>';
-            }
+                             {
+                                echo '
+                                    <script>
+                                    window.location="control-de-ordenes";
+                                    </script>';
+                            }
+                            elseif($response == "duplicado")
+                            {
+                                echo '
+                                <div class="alert alert-warning">
+                                El Orden del Cliente ya existe
+                                </div>';
+                            }
+                            else
+                            {
+                                echo '
+                                <div class="alert alert-danger">
+                                Error al registrar Orden
+                                </div>';
+                            }
         }
     }
 

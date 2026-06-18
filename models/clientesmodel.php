@@ -30,17 +30,30 @@ require_once "config/conexion.php";
             $stmt->bindparam(":email", $datos["email"], PDO::PARAM_STR);
             $stmt->bindparam(":estado", $datos["estado"], PDO::PARAM_STR);
 
-            if($stmt->execute()){
+                    try {
 
-                return "ok";
+                        if($stmt->execute())
+                        {
 
-            }else{
+                        return "ok";
 
-                return "error";
+                        }
 
-            }
+                    } catch(PDOException $e) 
+                    {
 
-            $stmt = null;
+                        if($e->getCode() == 23000)
+                        {
+
+                            return "duplicado";
+
+                        }
+
+                         return "error";
+
+                    }
+
+                $stmt = null;
 
         }
     
@@ -51,6 +64,28 @@ require_once "config/conexion.php";
 
                  return $response;
         }
+
+
+
+         //buscador de listadeclientes 
+         static public function buscarClientePorDni($dni)
+            {
+            $stmt = Conexion::conectar()->prepare(
+                "SELECT *
+                FROM clientes
+                WHERE dni LIKE :dni
+                AND estado = 1"
+            );
+
+            $buscar = "%".$dni."%";
+
+            $stmt->bindParam(":dni", $buscar, PDO::PARAM_STR);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
 
 
     }

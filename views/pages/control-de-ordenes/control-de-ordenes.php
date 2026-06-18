@@ -91,7 +91,11 @@ $ordenes = OrdenesController::mostrarControlOrdenes();
 
                     <td><?php echo $orden["cliente"]; ?></td>
 
-                    <td><?php echo $orden["marca"]; ?></td>
+                    <td>
+                        <?php echo $orden["marca"]; ?>
+                        -
+                        <?php echo $orden["modelo"]; ?>
+                    </td>
 
                     <td><?php echo $orden["placa"]; ?></td>
 
@@ -101,13 +105,40 @@ $ordenes = OrdenesController::mostrarControlOrdenes();
 
                     <td><?php echo $orden["hora_salida"]; ?></td>
 
+                    <!--conexion a whatsapp-->
                     <td>
-                            <button class="btn btn-primary btn-sm">
-                                
 
-                                <i class="fab fa-whatsapp"></i>
+                        <?php
 
-                            </button>
+                            $mensaje =
+                            "Hola *".strtoupper($orden["cliente"])."*, ya está *".$orden["estado"]."* su vehículo.\n\n".
+                            "PUEDE PASAR A RECOGER\n\n".
+                            "🚗 Marca: ".strtoupper($orden["marca"])."\n".
+                            "🔢 Placa: ".$orden["placa"]."\n".
+                            "🆔 DNI: ".$orden["dni"]."\n".
+                            "📱 Teléfono: ".$orden["telefono"]."\n\n".
+                            "GRACIAS POR CONFIAR EN NOSOTROS *CARWASH MARKAI*! 🙌";
+
+                        ?>
+
+                        <?php
+
+                            $url = "https://web.whatsapp.com/send?phone=51".$orden["telefono"].
+                            "&text=".urlencode($mensaje);
+
+                        ?>
+
+                            <a
+                            
+                            href="<?php echo $url; ?>"
+                            target="_blank"
+                            class="btn btn-success btn-sm"
+                            >
+
+                            <i class="fab fa-whatsapp"></i>
+
+                            </a>
+
                     </td>
 
                 </tr>
