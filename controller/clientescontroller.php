@@ -58,21 +58,16 @@
             }
 
         }
+
+
+         //GET_clientes
+        static public function mostrarClientes()
+        {
+               $response = ClientesModel::mostrarClientes();
+
+                 return $response;
+        }
          
-    
-
-            //GET_clientes
-
-            static public function mostrarClientes()
-            {
-                 $stmt = Conexion::conectar()->prepare(
-                 "SELECT * FROM clientes"
-                    );
-
-                $stmt->execute();
-
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            }
 
             //es buscador de clientes
 
@@ -80,6 +75,68 @@
             {
                 return ClientesModel::buscarClientePorDni($dni);
             }
+
+
+            //editar clientes
+            
+            static public function editarClientes()
+        {
+            if (isset($_POST["dni"])) 
+                {
+
+            if (
+                empty($_POST["dni"]) ||
+                empty($_POST["nombres"]) ||
+                empty($_POST["apellidos"]) ||
+                empty($_POST["telefono"]) ||
+                empty($_POST["email"])
+                ) {
+                    return;
+                  }
+
+                $datos = array(
+                "dni" => $_POST["dni"],
+                "nombres" => $_POST["nombres"],
+                "apellidos" => $_POST["apellidos"],
+                "telefono" => $_POST["telefono"],
+                "email" => $_POST["email"]
+                );
+
+            $response = ClientesModel::editarClientes($datos);
+
+                if ($response == "ok") 
+                    {
+
+                    echo '
+                    <script>
+                        window.location = "lista-de-clientes";
+                    </script>';
+
+                    } else {
+
+                    echo '
+                    <div class="alert alert-danger">
+                        Error al actualizar el cliente.
+                    </div>';
+
+                    }
+                }
+        }
+
+
+        //ELIMINACION DE CLIENTES SOLO EN SISTEMA VISUAL NO EL BASE DE DATOS
+            static public function eliminarCliente($dni)
+                {
+                    if (!empty($dni)) {
+
+                    $response = ClientesModel::eliminarCliente($dni);
+
+                        return $response;
+
+                    }
+
+                        return "error";
+                }
 
     }
 ?>

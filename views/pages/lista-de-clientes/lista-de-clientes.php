@@ -1,5 +1,20 @@
-<!-- Content Header -->
+<?php
+ //ELIMINAR CLIENTES
+if (isset($routesArray[3]) && $routesArray[3] == "eliminar") {
 
+    $dni = $routesArray[4];
+
+    ClientesController::eliminarCliente($dni);
+
+    echo '
+    <script>
+        window.location = "lista-de-clientes";
+    </script>';
+}
+
+?>
+
+<!-- Content Header -->
 <section class="content-header">
 
 <div class="container-fluid">
@@ -21,12 +36,6 @@
 
                 <li class="breadcrumb-item">
                     <a href="inicio">Inicio</a>
-                </li>
-
-                <li class="breadcrumb-item active">
-                    Lista de Clientes
-                </li>
-
             </ol>
 
         </div>
@@ -38,9 +47,26 @@
 
 </section>
 
+
 <!-- Main content -->
 
 <section class="content">
+
+     <?php
+        if (isset($routesArray[3]) && $routesArray[3] == "editar") {
+     ?>
+
+<section class="content">
+
+    <?php include __DIR__ . "/editar.php"; ?>
+
+</section>
+
+    <?php
+        return;
+    }
+    ?>
+
 
 <div class="card">
 
@@ -129,7 +155,7 @@
                         <th>Apellidos</th>
                         <th>Teléfono</th>
                         <th>Email</th>
-                        <th width="150">Acciones</th>
+                        <th width="100">Acciones</th>
 
                     </tr>
 
@@ -149,18 +175,20 @@
 
 
                         <td>
-
-                            <button class="btn btn-warning btn-sm">
-
+                            <!-- EDITAR O MODIFICAR -->
+                            <a href="lista-de-clientes/editar/<?php echo $cliente['dni']; ?>"
+                                class="btn btn-warning btn-sm">
                                 <i class="fas fa-edit"></i>
-
-                            </button>
-
-                            <button class="btn btn-danger btn-sm">
+                            </a>
+                            
+                            <!-- ELIMINAR CLIENTES -->
+                            <a href="javascript:void(0);"
+                                class="btn btn-danger btn-sm"
+                                onclick="confirmarEliminar('<?php echo $cliente['dni']; ?>')">
 
                                 <i class="fas fa-trash"></i>
 
-                            </button>
+                            </a>
 
                         </td>
 
@@ -192,35 +220,31 @@
 
 </div>
 
+
 </section>
 
 
 <!-- se agrego para que la tabla funcione mediante vas ingresando
  el dni y te va mostrando la informacion del cliente-->
 
+
 <script>
 
-document.getElementById("buscar_dni").addEventListener("keyup", function() {
+function confirmarEliminar(dni){
 
-    let filtro = this.value.toUpperCase();
+    fncSweetAlert(
+        "confirm",
+        "¿Desea eliminar este cliente?"
+    ).then(function(confirmar){
 
-    let filas = document.querySelectorAll("tbody tr");
+        if(confirmar){
 
-    filas.forEach(function(fila) {
+            window.location = "lista-de-clientes/eliminar/" + dni;
 
-        let dni = fila.cells[0].textContent;
-
-        if(dni.indexOf(filtro) > -1)
-        {
-            fila.style.display = "";
-        }
-        else
-        {
-            fila.style.display = "none";
         }
 
     });
 
-});
+}
 
 </script>
