@@ -36,6 +36,11 @@ if (isset($routesArray[3]) && $routesArray[3] == "eliminar") {
 
                 <li class="breadcrumb-item">
                     <a href="inicio">Inicio</a>
+                </li>
+
+                <li class="breadcrumb-item active">
+                         Lista de Clientes
+                    </li>
             </ol>
 
         </div>
